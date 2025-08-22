@@ -1,17 +1,23 @@
 const clockTitle = document.querySelector('.js-clock');
 
-const targetDate = new Date('2025-12-25T00:00:00');
-
-function getClock() {
+function getTime() {
+    const xmasDay = new Date(`${new Date().getFullYear()}-12-25:00:00:00+0900`);
     const now = new Date();
-    const diff = targetDate - now;
-
-    const days = String(Math.floor(diff / (1000 * 60 * 60 * 24))).padStart(2, '0');
-    const hours = String(Math.floor((diff / (1000 * 60 * 60)) % 24)).padStart(2, '0');
-    const minutes = String(Math.floor((diff / (1000 * 60)) % 60)).padStart(2, '0');
-    const seconds = String(Math.floor((diff / 1000) % 60)).padStart(2, '0');
-
-    clockTitle.innerText = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+    // This is in milisecondsx
+    const difference = new Date(xmasDay - now);
+    const secondsInMs = Math.floor(difference / 1000);
+    const minutesInMs = Math.floor(secondsInMs / 60);
+    const hoursInMs = Math.floor(minutesInMs / 60);
+    const days = Math.floor(hoursInMs / 24);
+    const seconds = secondsInMs % 60;
+    const minutes = minutesInMs % 60;
+    const hours = hoursInMs % 24;
+    const daysStr = `${days < 10 ? `0${days}` : days}d`;
+    const hoursStr = `${hours < 10 ? `0${hours}` : hours}h`;
+    const minutesStr = `${minutes < 10 ? `0${minutes}` : minutes}m `;
+    const secondsStr = `${seconds < 10 ? `0${seconds}` : seconds}s`;
+    clockTitle.innerHTML = `${daysStr} ${hoursStr} ${minutesStr} ${secondsStr}`;
 }
-getClock();
-setInterval(getClock, 1000);
+
+getTime();
+setInterval(getTime, 1000);
