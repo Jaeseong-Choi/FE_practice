@@ -1,0 +1,106 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f1f5f7;
+    margin: 0;
+    font-family: sans-serif;
+}
+
+.container {
+    background-color: white;
+    padding: 20px 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    width: 420px;
+    max-width: calc(100vw - 48px);
+    box-sizing: border-box;
+    text-align: center;
+}
+
+form {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+form input {
+    width: 100%;
+    padding: 8px;
+    border-radius: 7px;
+    border-color: #f8fafc;
+    box-sizing: border-box;
+}
+form button {
+    background-color: green;
+    color: white;
+    border: none;
+    border-radius: 7px;
+    padding: 6px 12px;
+    cursor: pointer;
+}
+.todo-lists {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    width: 100%;
+    column-gap: 16px;
+    align-items: start;
+}
+.todo,
+.done {
+    width: 100%;
+    display: grid;
+    row-gap: 8px;
+}
+.todo::before {
+    content: '할 일';
+    font-weight: 700;
+    display: block;
+    text-align: center;
+    margin-bottom: 12px;
+}
+.done::before {
+    content: '완료';
+    font-weight: 700;
+    display: block;
+    text-align: center;
+    margin-bottom: 12px;
+}
+.todo-item {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: center;
+    column-gap: 24px;
+    padding: 8px 10px;
+    background-color: #f8fafc;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    margin: 0;
+    width: 100%;
+    box-sizing: border-box;
+    min-width: 0;
+}
+
+.todo-item > button {
+    justify-self: end;
+    white-space: nowrap;
+}
+.complete-btn {
+    background-color: green;
+    color: white;
+    border: none;
+    border-radius: 7px;
+    padding: 6px 10px;
+    cursor: pointer;
+}
+
+.delete-btn {
+    background-color: red;
+    color: white;
+    border: none;
+    border-radius: 7px;
+    padding: 6px 10px;
+    cursor: pointer;
+}

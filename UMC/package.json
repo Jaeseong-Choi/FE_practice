@@ -1,0 +1,23 @@
+{
+  "name": "9th_umc_web_b",
+  "version": "1.0.0",
+  "description": "READ ME",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/HUFS-UMC/9TH_UMC_WEB_B.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/HUFS-UMC/9TH_UMC_WEB_B/issues"
+  },
+  "homepage": "https://github.com/HUFS-UMC/9TH_UMC_WEB_B#readme",
+  "devDependencies": {
+    "typescript": "^5.9.2"
+  }
+}

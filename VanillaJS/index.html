@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>block vs inline vs inline-block 데모</title>
+        <style>
+            :root {
+                --bg: #0f172a; /* slate-900 */
+                --panel: #111827; /* gray-900 */
+                --muted: #9ca3af; /* gray-400 */
+                --border: #334155; /* slate-700 */
+                --accent: #22c55e; /* green-500 */
+                --accent2: #60a5fa; /* blue-400 */
+                --accent3: #f97316; /* orange-500 */
+            }
+
+            html,
+            body {
+                height: 100%;
+            }
+            body {
+                margin: 0;
+                font-family: ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial,
+                    'Noto Sans', 'Apple Color Emoji', 'Segoe UI Emoji';
+                background: var(--bg);
+                color: #e5e7eb;
+                line-height: 1.6;
+            }
+
+            .wrap {
+                max-width: 1100px;
+                margin: 40px auto;
+                padding: 0 20px;
+            }
+            .title {
+                font-size: clamp(24px, 4vw, 36px);
+                font-weight: 800;
+                margin: 0 0 8px;
+            }
+            .sub {
+                color: var(--muted);
+                margin: 0 0 28px;
+            }
+
+            .grid {
+                display: grid;
+                gap: 28px;
+            }
+
+            .card {
+                background: var(--panel);
+                border: 1px solid var(--border);
+                border-radius: 14px;
+                overflow: hidden;
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            }
+            .card h2 {
+                margin: 0;
+                font-size: 20px;
+                padding: 14px 18px;
+                border-bottom: 1px solid var(--border);
+                background: rgba(255, 255, 255, 0.03);
+            }
+            .card .desc {
+                padding: 12px 18px;
+                color: var(--muted);
+                border-bottom: 1px dashed var(--border);
+            }
+
+            .demo {
+                padding: 18px;
+            }
+            .demo .stage {
+                background: linear-gradient(transparent 23px, rgba(255, 255, 255, 0.06) 24px),
+                    linear-gradient(90deg, transparent 23px, rgba(255, 255, 255, 0.06) 24px);
+                background-size: 24px 24px;
+                border: 1px dashed var(--border);
+                border-radius: 10px;
+                padding: 14px;
+                min-height: 120px;
+            }
+
+            .legend {
+                display: flex;
+                gap: 10px;
+                align-items: center;
+                padding: 12px 18px;
+                color: #cbd5e1;
+            }
+            .dot {
+                width: 12px;
+                height: 12px;
+                border-radius: 50%;
+                display: inline-block;
+            }
+            .dot.g {
+                background: var(--accent);
+            }
+            .dot.b {
+                background: var(--accent2);
+            }
+            .dot.o {
+                background: var(--accent3);
+            }
+
+            /* 공통 아이템 스타일 */
+            .item {
+                color: #111;
+                font-weight: 700;
+                border-radius: 10px;
+                padding: 10px 12px;
+                margin: 6px;
+                background: #fff;
+                border: 2px solid #e5e7eb;
+                box-shadow: 0 2px 0 rgba(0, 0, 0, 0.08) inset;
+            }
+
+            /* 1) block 예시 */
+            .block .item {
+                display: block;
+            }
+            .block .w-auto {
+                width: auto;
+            }
+
+            /* 2) inline 예시 */
+            .inline .tag {
+                display: inline;
+                background: #fff;
+                border: 2px solid #e5e7eb;
+                padding: 6px 10px;
+                margin: 6px;
+                border-radius: 999px;
+                font-weight: 700;
+                color: #111;
+            }
+            .inline .try-size {
+                width: 200px;
+                height: 80px;
+                display: inline;
+            }
+            .note {
+                color: #a1a1aa;
+                font-size: 14px;
+                margin-top: 10px;
+            }
+
+            /* 3) inline-block 예시 */
+            .inlineblock .cardlet {
+                display: inline-block;
+                width: 180px;
+                height: 90px;
+                vertical-align: top;
+            }
+
+            /* 레이아웃 반응형 */
+            @media (min-width: 860px) {
+                .grid {
+                    grid-template-columns: 1fr 1fr 1fr;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <div class="wrap">
+            <h1 class="title">block vs inline vs inline-block</h1>
+            <p class="sub">
+                Live Server로 열어 실제 배치 차이를 확인하세요. 각 스테이지 안의 흰색 박스가 요소들입니다.
+            </p>
+
+            <div class="grid">
+                <!-- BLOCK -->
+                <section class="card">
+                    <h2>① Block 요소</h2>
+                    <div class="desc">
+                        한 줄 전체를 차지하고, 항상 새 줄에서 시작합니다. width: auto일 때 부모의 가로폭을 가득
+                        채웁니다.
+                    </div>
+                    <div class="legend"><span class="dot g"></span> display: block</div>
+                    <div class="demo block">
+                        <div class="stage">
+                            <div class="item w-auto">.item (block) — 줄바꿈됨</div>
+                            <div class="item w-auto">.item (block) — 가로 전체 사용</div>
+                            <div class="item w-auto">.item (block) — 세로로 쌓임</div>
+                        </div>
+                        <p class="note">
+                            특징: 자동 줄바꿈 / width 기본값 auto(부모 폭) / height, margin/padding 모두 적용
+                        </p>
+                    </div>
+                </section>
+
+                <!-- INLINE -->
+                <section class="card">
+                    <h2>② Inline 요소</h2>
+                    <div class="desc">
+                        줄 안에서 흐르며 옆으로 나란히 배치됩니다. width/height를 지정해도 적용되지 않습니다.
+                    </div>
+                    <div class="legend"><span class="dot b"></span> display: inline</div>
+                    <div class="demo inline">
+                        <div class="stage">
+                            텍스트와 함께 <span class="tag">.tag (inline)</span>
+                            <span class="tag try-size">.tag with width/height 시도</span>
+                            <span class="tag">.tag (inline)</span> 이어집니다.
+                        </div>
+                        <p class="note">
+                            특징: 가로로 흐름 / width, height 미적용 / 좌우 margin은 적용되지만 상하 margin은 레이아웃에
+                            영향 적음
+                        </p>
+                    </div>
+                </section>
+
+                <!-- INLINE-BLOCK -->
+                <section class="card">
+                    <h2>③ Inline-block 요소</h2>
+                    <div class="desc">줄 안에 나란히 배치되지만, block처럼 width/height가 적용됩니다.</div>
+                    <div class="legend"><span class="dot o"></span> display: inline-block</div>
+                    <div class="demo inlineblock">
+                        <div class="stage">
+                            <div class="item cardlet">.cardlet (inline-block)</div>
+                            <div class="item cardlet">width/height 지정 O</div>
+                            <div class="item cardlet">줄바꿈 없이 옆으로</div>
+                        </div>
+                        <p class="note">특징: 인라인처럼 옆으로 배치 + block처럼 width/height/margin/padding 적용</p>
+                    </div>
+                </section>
+            </div>
+
+            <section class="card" style="margin-top: 28px">
+                <h2>사용 팁</h2>
+                <div class="demo">
+                    <ul>
+                        <li><strong>block</strong>: 섹션, 카드, 문단 등 세로로 쌓이는 영역</li>
+                        <li><strong>inline</strong>: 텍스트 일부 강조, 링크, 아이콘 등 텍스트 흐름 안의 요소</li>
+                        <li>
+                            <strong>inline-block</strong>: 버튼, 배지, 작은 카드처럼 옆으로 나란하지만 고정 크기가
+                            필요한 컴포넌트
+                        </li>
+                    </ul>
+                </div>
+            </section>
+
+            <section class="card" style="margin-top: 28px">
+                <h2>Live Server로 보는 방법</h2>
+                <div class="demo">
+                    <ol>
+                        <li>이 파일을 <code>block-inline-inline-block-demo.html</code>로 저장합니다.</li>
+                        <li>VS Code에서 <em>Live Server</em> 확장을 설치합니다.</li>
+                        <li>편집기에서 마우스 오른쪽 클릭 → <strong>Open with Live Server</strong>.</li>
+                        <li>
+                            브라우저에서 각 스테이지의 흰 박스 배치(세로로 쌓임 vs 가로 흐름 vs 가로 나란히+크기 지정)를
+                            비교하세요.
+                        </li>
+                    </ol>
+                </div>
+            </section>
+        </div>
+    </body>
+</html>
