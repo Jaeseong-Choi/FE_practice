@@ -1,3 +1,3 @@
 let a = "C";
 let a = "T";
-print(a)
+console.log(a)
