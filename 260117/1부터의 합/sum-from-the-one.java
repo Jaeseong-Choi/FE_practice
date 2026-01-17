@@ -13,6 +13,7 @@ public class Main {
 			
 			if (add >= n) {
 				System.out.println(i);
+				break;
 			}
 		}
 	}
