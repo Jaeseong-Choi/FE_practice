@@ -1,0 +1,30 @@
+import java.util.Arrays;
+import java.util.Scanner;
+
+public class Main {
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		int n = sc.nextInt();
+		int[] arr = new int[n];
+		for (int i = 0; i < n; i++) {
+			arr[i] = sc.nextInt();
+		}
+		// Please write your code here.
+		for (int i = 0; i < n; i++) {
+			int min = arr[i];
+			int tmpIdx = 0;
+
+			for (int j = i; j < n; j++) {
+				if (arr[j] < min) {
+					min = arr[j];
+					tmpIdx = arr[i];
+					arr[i] = arr[j];
+					arr[j] = tmpIdx;
+				}
+			}
+		}
+		for (int i = 0; i < arr.length; i++) {
+			System.out.print(arr[i] + " ");
+		}
+	}
+}
