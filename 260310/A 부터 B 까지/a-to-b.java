@@ -10,10 +10,12 @@ public class Main {
 		while (a < b) {
 			if(a % 2 == 0) {
 				a += 3;
+				if (a > b) return; 
 				System.out.print(a+ " ");
 			}
 			else if (a % 2 == 1) {
 				a *= 2;
+				if (a > b) return; 
 				System.out.print(a+ " ");
 			}
 		}
