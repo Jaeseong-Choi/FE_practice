@@ -10,7 +10,7 @@ public class Main {
     		int num = sc.nextInt(); 
     		
     		if(num < 25) System.out.println("Higher");
-    		else if (num > 25) System.out.println("lower");
+    		else if (num > 25) System.out.println("Lower");
     		else if ( num == 25) {
     			System.out.println("Good");
     			match = false;
